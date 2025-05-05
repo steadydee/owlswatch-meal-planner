@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OwlMind – Dashboard</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; display: flex; height: 100vh; }
+    nav {
+      width: 200px;
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    nav h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #ecf0f1;
+    }
+    nav a {
+      display: block;
+      margin: 10px 0;
+      color: #bdc3c7;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: white;
+    }
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+    .card {
+      background: #f8f8f8;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h2>OwlMind</h2>
+    <a href="/planner/upload">🥘 Meal Planner</a>
+    <a href="/assistant">🧠 Assistant</a>
+    <a href="#">📦 Inventory</a>
+    <a href="#">📅 Guest Schedule</a>
+    <a href="#">📊 Reports</a>
+    <a href="#">⚙️ Settings</a>
+  </nav>
+  <main>
+    <h1>Welcome to OwlMind</h1>
+    <div class="card">Today’s Guests: <strong>12</strong></div>
+    <div class="card">Meals Planned: <strong>3</strong></div>
+    <div class="card">Birding Tours: <strong>2</strong></div>
+    <div class="card">Shopping List: <strong>80% Ready</strong></div>
+    <div class="card">Last Rule Update: <strong>3 hours ago</strong></div>
+  </main>
+</body>
+</html>

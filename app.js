@@ -1,5 +1,3 @@
-// app.js
-
 require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
@@ -9,12 +7,14 @@ const csv = require('csv-parser');
 
 const getMealPlan = require('./services/gpt');
 const generatePrompt = require('./prompts/plan_menu');
+
 const assistantApi = require('./routes/assistant_api');
 const assistantRouter = require('./routes/assistant');
 const uploadPage = require('./routes/upload_page');
 const reservationsRouter = require('./routes/reservations');
+const dashboard = require('./routes/dashboard'); // ✅ keep below app
 
-const app = express(); // ✅ define `app` before using it
+const app = express(); // ✅ must come first
 
 const upload = multer({ dest: 'tmp/' });
 
@@ -23,6 +23,7 @@ app.use('/assistant', assistantRouter);
 app.use('/api/assistant', assistantApi);
 app.use('/planner', uploadPage);
 app.use('/api/reservations', reservationsRouter);
+app.use('/', dashboard); // ✅ now it's safe to register
 
 function parseCSV(filePath) {
   return new Promise((resolve, reject) => {
