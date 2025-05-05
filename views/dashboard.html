@@ -37,6 +37,7 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
   </style>
+  <link rel="stylesheet" href="/assistant-widget.css" />
 </head>
 <body>
   <nav>
@@ -48,6 +49,7 @@
     <a href="#">📊 Reports</a>
     <a href="#">⚙️ Settings</a>
   </nav>
+
   <main>
     <h1>Welcome to OwlMind</h1>
     <div class="card">Today’s Guests: <strong>12</strong></div>
@@ -56,5 +58,9 @@
     <div class="card">Shopping List: <strong>80% Ready</strong></div>
     <div class="card">Last Rule Update: <strong>3 hours ago</strong></div>
   </main>
+
+  <!-- OwlMind Chat Assistant -->
+  <div id="chat-container"></div>
+  <script src="/assistant-widget.js" defer></script>
 </body>
 </html>

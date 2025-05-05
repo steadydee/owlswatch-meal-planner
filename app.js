@@ -15,7 +15,7 @@ const reservationsRouter = require('./routes/reservations');
 const dashboard = require('./routes/dashboard'); // ✅ keep below app
 
 const app = express(); // ✅ must come first
-
+app.use(express.static(path.join(__dirname, 'public')));
 const upload = multer({ dest: 'tmp/' });
 
 app.use(express.json());
