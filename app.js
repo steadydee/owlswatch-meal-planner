@@ -11,14 +11,18 @@ const getMealPlan = require('./services/gpt');
 const generatePrompt = require('./prompts/plan_menu');
 const assistantApi = require('./routes/assistant_api');
 const assistantRouter = require('./routes/assistant');
+const uploadPage = require('./routes/upload_page');
+const reservationsRouter = require('./routes/reservations');
 
-const app = express(); // ✅ define this before calling app.use
+const app = express(); // ✅ define `app` before using it
 
 const upload = multer({ dest: 'tmp/' });
 
-app.use(express.json()); // ✅ middleware before routes
+app.use(express.json());
 app.use('/assistant', assistantRouter);
 app.use('/api/assistant', assistantApi);
+app.use('/planner', uploadPage);
+app.use('/api/reservations', reservationsRouter);
 
 function parseCSV(filePath) {
   return new Promise((resolve, reject) => {
@@ -36,7 +40,6 @@ app.post('/api/reservations/upload', upload.single('file'), async (req, res) => 
     const csvPath = req.file.path;
     const rawReservations = await parseCSV(csvPath);
 
-    // Basic transformation to expected format
     const reservations = rawReservations.map(r => ({
       name: r.Name || r.name,
       startDate: r.StartDate || r.start_date,
