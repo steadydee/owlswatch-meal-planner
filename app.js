@@ -6,13 +6,19 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const csv = require('csv-parser');
+
 const getMealPlan = require('./services/gpt');
 const generatePrompt = require('./prompts/plan_menu');
+const assistantApi = require('./routes/assistant_api');
+const assistantRouter = require('./routes/assistant');
 
-const app = express();
+const app = express(); // ✅ define this before calling app.use
+
 const upload = multer({ dest: 'tmp/' });
 
-app.use(express.json());
+app.use(express.json()); // ✅ middleware before routes
+app.use('/assistant', assistantRouter);
+app.use('/api/assistant', assistantApi);
 
 function parseCSV(filePath) {
   return new Promise((resolve, reject) => {
